@@ -6,18 +6,15 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Setter
 @Getter
 @AllArgsConstructor
-
-@NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
@@ -33,7 +30,7 @@ public class User implements UserDetails {
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "task_id", referencedColumnName = "id")
-    private List<Task> tasks=new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
 
     @Column(unique = true)
     @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
@@ -46,10 +43,30 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> authorities;
 
-    private boolean accountNonExpired;
-    private boolean isEnabled;
-    private boolean accountNonLocked;
-    private boolean isCredentialsNonExpired;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getAuthorities();
+    }
 
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 
 }

@@ -26,9 +26,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public void registerUser(RegisterUserRequest registerUserRequest) {
         log.info("Registering user: {}", registerUserRequest);
-        registerUserRequest.setPassword(passwordEncoder.encoder().encode(registerUserRequest.getPassword()));
         // TODO: Implement user registration logic here
         User user= userMapper.mapToUser(registerUserRequest);
+        user.setPassword(passwordEncoder.encoder().encode(registerUserRequest.getPassword()));
         userRepository.save(user);
         log.info("User registered successfully: {}", user);
     }
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByEmail(String email) {
-  return    userRepository.findByEmail(email).orElseThrow(()->new RuntimeException("User not found by email"+email));
+    return  userRepository.findByEmail(email).orElseThrow(()->new RuntimeException("User not found by email"+email));
 
     }
 

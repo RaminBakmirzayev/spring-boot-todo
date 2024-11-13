@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Builder
 @Getter
 @Setter
@@ -15,6 +17,6 @@ public class RegisterUserRequest {
     private String surname ;
     private String email;
     private String password;
-    private Role role;
+    private Set<Role> authorities;
 
 }
