@@ -13,10 +13,10 @@ Here’s what I managed to implement in this project:
 🛠️ Technologies Used
 I used the following technologies while building this project:
 
-Java Core ☕
-Spring Boot 🌱  
-Spring Security with JWT - Because security is key! 🔐
-PostgreSQL🐘 
+*Java Core ☕
+*Spring Boot 🌱  
+*Spring Security with JWT - Because security is key! 🔐
+*PostgreSQL🐘 
 Docker🐳
 Spring Data JPA
 Mapstruct 
