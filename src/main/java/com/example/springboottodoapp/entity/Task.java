@@ -15,7 +15,7 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name ="taskName", length = 256, nullable = false)
+    @Column(name = "taskName", length = 256, nullable = false)
     private String name;
     @Enumerated(EnumType.STRING)
     private STATUS status;

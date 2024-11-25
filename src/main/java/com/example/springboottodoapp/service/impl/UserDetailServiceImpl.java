@@ -13,11 +13,12 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class UserDetailServiceImpl implements UserDetailsService {
 
-   //private final UserService userService;
-   UserRepository userRepository;
+    //private final UserService userService;
+    UserRepository userRepository;
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 //     return userRepository.findByUsername(username);
-       return userRepository.findByEmail(email).orElseThrow(()->new UsernameNotFoundException("Could not find by email " + email));
+        return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("Could not find by email " + email));
     }
 }

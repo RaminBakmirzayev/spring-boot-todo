@@ -80,10 +80,7 @@ public class UserServiceImpl implements UserService {
 
         if (checkUserIdIsSameWithCurrentUserId(id)) {               //Yalnız login olan user update oluna bilir
             User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found by id" + id));
-            boolean updated = false;
-
-            if (updateUserField(registerUserRequest.getName(), user.getName(), user::setName))
-                updated = true;
+            boolean updated = updateUserField(registerUserRequest.getName(), user.getName(), user::setName);
 
             if (updateUserField(registerUserRequest.getSurname(), user.getSurName(), user::setSurName))
                 updated = true;
@@ -103,11 +100,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Long id) {
-        if(checkUserIdIsSameWithCurrentUserId(id)) {               //Yalnız login olan user siline bilir
+        if (checkUserIdIsSameWithCurrentUserId(id)) {               //Yalnız login olan user siline bilir
             userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found by id" + id));
             userRepository.deleteById(id);
             log.info("User deleted successfully");
-        }else {
+        } else {
             throw new AccessDeniedException("You can only delete your own account");
         }
     }
@@ -136,9 +133,8 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-   private boolean checkUserIdIsSameWithCurrentUserId(Long id) {
-        if (getCurrentUserId().equals(id)) return true;
-        return false;
+    private boolean checkUserIdIsSameWithCurrentUserId(Long id) {
+        return getCurrentUserId().equals(id);
     }
 
 

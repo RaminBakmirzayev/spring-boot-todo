@@ -10,9 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface TaskRepository extends JpaRepository<Task,Long> {
+public interface TaskRepository extends JpaRepository<Task, Long> {
 
     Optional<User> findByUser(User user);
-   List<Task> findAllByUser(User user);
+
+    List<Task> findAllByUser(User user);
 
 }

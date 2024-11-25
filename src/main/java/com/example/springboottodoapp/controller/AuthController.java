@@ -20,17 +20,17 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AuthController {
 
-private final UserService userService;
-private final AuthenticationService authenticationService;
+    private final UserService userService;
+    private final AuthenticationService authenticationService;
 
 
     @PostMapping("/signIn")
-    public ResponseEntity<AuthenticationResponse> loginUser(@RequestBody AuthenticationRequest loginUser){
+    public ResponseEntity<AuthenticationResponse> loginUser(@RequestBody AuthenticationRequest loginUser) {
 
-  AuthenticationResponse authenticationResponse= authenticationService.login(loginUser);
+        AuthenticationResponse authenticationResponse = authenticationService.login(loginUser);
 
-   return ResponseEntity.ok(authenticationResponse);
-}
+        return ResponseEntity.ok(authenticationResponse);
+    }
 
 
     @GetMapping("/me")

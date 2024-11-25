@@ -14,6 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @RequestMapping("api/users")
 @RequiredArgsConstructor
 @RestController
@@ -25,8 +26,8 @@ public class UserControler {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody RegisterUserRequest registerUserRequest) {
-            userService.registerUser(registerUserRequest);
-            return ResponseEntity.ok().body("Successfully registered!");
+        userService.registerUser(registerUserRequest);
+        return ResponseEntity.ok().body("Successfully registered!");
     }
 
     @GetMapping()
@@ -37,19 +38,19 @@ public class UserControler {
     @PutMapping("/{id}")
     ResponseEntity<User> updateStudent(@PathVariable Long id, @RequestBody RegisterUserRequest userRequest) {
 
-            User user = userService.updateUser(id, userRequest);
-            return ResponseEntity.ok(user);
+        User user = userService.updateUser(id, userRequest);
+        return ResponseEntity.ok(user);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ResponseUser> getUserById(@PathVariable Long id) {
-            ResponseUser responseUser = userService.getUserById(id);
-            return ResponseEntity.ok(responseUser);
+        ResponseUser responseUser = userService.getUserById(id);
+        return ResponseEntity.ok(responseUser);
     }
 
     @DeleteMapping("/{id}")
 
-    public ResponseEntity<? > deleteUser(@PathVariable Long id) {
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.ok().body("succesfully deleted");
 

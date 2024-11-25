@@ -10,7 +10,7 @@ import java.util.List;
 
 @Mapper
 public interface UserMap {
-    UserMap INSTANCE  = Mappers.getMapper(UserMap.class);
+    UserMap INSTANCE = Mappers.getMapper(UserMap.class);
 
     List<ResponseUser> mapUserListToResponseListMethod(List<User> userList);
 

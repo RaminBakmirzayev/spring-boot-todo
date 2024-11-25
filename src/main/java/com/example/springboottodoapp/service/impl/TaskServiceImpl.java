@@ -34,8 +34,6 @@ public class TaskServiceImpl implements TaskService {
     private final TaskRepository taskRepository;
 
 
-
-
     private final TaskMapper taskMapper = TaskMapper.INSTANCE;
 
     @Override
@@ -64,20 +62,20 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public TaskResponse getTaskById(Long id) {
-       Task task = taskRepository.findById(id).orElseThrow(()->new UsernameNotFoundException("Task not found"));
-       return taskMapper.mapToTaskResponse(task);
+        Task task = taskRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("Task not found"));
+        return taskMapper.mapToTaskResponse(task);
     }
 
     @Override
     public void deleteTask(Long id) {
-    taskRepository.deleteById(id);
+        taskRepository.deleteById(id);
     }
 
     @Override
-    public void updateTask(Long id,TaskRequest taskRequest) {
-    Task task=taskRepository.findById(id).orElseThrow(()->new  UsernameNotFoundException("Task not found"));
-    task.setStatus(taskRequest.getStatus());
-    taskRepository.save(task);
+    public void updateTask(Long id, TaskRequest taskRequest) {
+        Task task = taskRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("Task not found"));
+        task.setStatus(taskRequest.getStatus());
+        taskRepository.save(task);
     }
 
 

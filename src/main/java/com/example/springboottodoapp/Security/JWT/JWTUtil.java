@@ -60,7 +60,7 @@ public class JWTUtil {
                 .subject(userDetails.getUsername())
                 .expiration(new Date(System.currentTimeMillis() + jwtExpiration))
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .signWith(getSigningKey(),SignatureAlgorithm.HS256)
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
 
     }

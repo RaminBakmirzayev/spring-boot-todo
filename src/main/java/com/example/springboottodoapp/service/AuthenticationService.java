@@ -5,5 +5,5 @@ import com.example.springboottodoapp.dto.AuthenticationResponse;
 
 public interface AuthenticationService {
 
-   AuthenticationResponse login(AuthenticationRequest request);
+    AuthenticationResponse login(AuthenticationRequest request);
 }

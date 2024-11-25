@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
 import java.util.*;
+
 @EqualsAndHashCode
 @Setter
 @Getter
@@ -32,7 +33,7 @@ public class User implements UserDetails {
     private String surName;
     private String password;
 
-    @OneToMany(mappedBy = "user",cascade =CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Task> tasks = new ArrayList<>();
 
     @Column(unique = true)
@@ -51,7 +52,7 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return
-               Collections.singletonList(role);
+                Collections.singletonList(role);
     }
 
 
@@ -74,7 +75,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return enabled;
     }
-
 
 
     public String getUsername() {
