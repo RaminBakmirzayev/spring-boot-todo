@@ -1,4 +1,4 @@
-package com.example.springboottodoapp.config;
+package com.example.springboottodoapp.Security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,4 +12,6 @@ public class PasswordEncoderConfig {
         return new BCryptPasswordEncoder();
 
     }
+
+
 }

@@ -1,13 +1,11 @@
 package com.example.springboottodoapp.dto;
 
 import com.example.springboottodoapp.enums.STATUS;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class TaskRequest {
     private String name;
     private STATUS status;

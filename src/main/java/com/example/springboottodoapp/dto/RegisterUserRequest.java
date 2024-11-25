@@ -1,12 +1,12 @@
 package com.example.springboottodoapp.dto;
 
-import com.example.springboottodoapp.entity.Role;
+import com.example.springboottodoapp.enums.ROLE;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.Set;
 
 @Builder
 @Getter
@@ -17,6 +17,5 @@ public class RegisterUserRequest {
     private String surname ;
     private String email;
     private String password;
-    private Set<Role> authorities;
 
 }

@@ -9,7 +9,8 @@ import lombok.Setter;
 @RequiredArgsConstructor
 public class ResponseUser {
     private Long id;
-    private String username;
+    private String name;
     private String password;
     private String email;
+
 }

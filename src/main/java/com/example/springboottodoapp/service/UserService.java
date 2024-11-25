@@ -12,6 +12,10 @@ public interface  UserService {
     List<ResponseUser> getAllUsers();
     ResponseUser getUserById(Long id);
     User getUserByEmail(String email);
-    void updateUser(Long id, RegisterUserRequest registerUserRequest);
+     User updateUser(Long id, RegisterUserRequest registerUserRequest);
     void deleteUser(Long id);
+
+    public default Long getCurrentUserId() {
+        return null;
+    }
 }

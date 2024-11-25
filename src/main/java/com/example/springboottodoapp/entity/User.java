@@ -5,47 +5,53 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.*;
-
+@EqualsAndHashCode
 @Setter
 @Getter
-@AllArgsConstructor
 @RequiredArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "users")
+@Builder
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "userName", length = 32, nullable = false)
-    private String username;
+    private String name;
     @Column(name = "userSurname", length = 32, nullable = false)
     private String surName;
     private String password;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "task_id", referencedColumnName = "id")
+    @OneToMany(mappedBy = "user",cascade =CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Task> tasks = new ArrayList<>();
 
     @Column(unique = true)
-    @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
-    @NotEmpty(message = "Email cannot be empty")
     private String email;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private boolean locked;
+    private boolean enabled;
     @Enumerated(EnumType.STRING)
-    @JoinTable(name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> authorities;
+    ROLE role;
+
+
+    @CreationTimestamp
+    LocalDateTime createdTime;
+    @UpdateTimestamp
+    LocalDateTime updatedTime;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getAuthorities();
+        return
+               Collections.singletonList(role);
     }
 
 
@@ -56,7 +62,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return !locked;
     }
 
     @Override
@@ -66,7 +72,12 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 
+
+
+    public String getUsername() {
+        return email;
+    }
 }
